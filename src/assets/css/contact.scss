@@ -1,0 +1,26 @@
+.contact_text{
+    color: red;
+}
+
+.stick-btn{
+    display: inline-flex;
+    padding: 6px 14px;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgb(84, 84, 84);
+    border-radius: 12px;
+    margin: 10px 0;
+    &:hover{
+        background-color: antiquewhite;
+    }
+    
+}
+.users-table{
+    width: 100%;
+    th{
+        border-top: 2px solid rgb(114, 114, 114);
+    }
+    td,th{
+        padding: 10px;
+        border-bottom: 2px solid rgb(114, 114, 114);
+    }
+}
