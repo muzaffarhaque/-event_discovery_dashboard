@@ -20,7 +20,8 @@ export default function EventRow() {
                               <div className="user-box"><img src={userImage} alt="User image" /></div>
                           </div>
 
-                          <button className='track-btn'>
+                          <button className='track-btn animated_btn'>
+                            
                                   Tracks
                           </button>
 

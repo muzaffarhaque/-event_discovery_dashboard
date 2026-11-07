@@ -24,7 +24,8 @@
                     border: none;
                     outline: none;
                     cursor: pointer;
-                    &:focus-visible{
+                    background-color: transparent;
+                    &:focus-visible {
                         outline: 1.5px solid rgb(95, 180, 251);
                     }
                     &:hover {
@@ -62,7 +63,7 @@
             border-radius: 20px;
             .serch-input {
                 width: 80%;
-                outline:none;
+                outline: none;
                 border-radius: 20px;
                 border: none;
                 font-size: 16px;
@@ -73,7 +74,7 @@
                 &::placeholder {
                     color: var(--app-text);
                 }
-                &:focus-visible{
+                &:focus-visible {
                     outline: 1.5px solid rgb(95, 180, 251);
                 }
 
@@ -90,7 +91,7 @@
                 font-weight: 300;
                 padding: 6px 12px;
                 border-radius: 20px;
-                &:focus-visible{
+                &:focus-visible {
                     outline: 1.5px solid rgb(95, 180, 251);
                 }
 
@@ -279,8 +280,7 @@
         p {
             color: #FFF;
             margin-bottom: 0;
-            .icon {
-                }
+            .icon {}
             span {
                 font-size: 10px;
 
@@ -365,9 +365,19 @@
                 outline: none;
                 border-radius: 20px;
                 padding: 7px clamp(20px,1.3vw,40px);
-                &:focus-visible{
+                position: relative;
+                box-shadow: 0 0 34px -8px rgba(139, 31, 216, .55) !important;
+                // animation: indRingSpin 3.6s linear infinite !important;
+                &:focus-visible {
                     outline: 1.5px solid rgb(36, 0, 181);
                 }
+
+                // @keyframes indRingSpin {
+                //     100% {
+                //         --indRing: 360deg;
+                //     }
+                // }
+
             }
 
         }
@@ -375,7 +385,7 @@
 }
 
 .best-venues {
-   h5 {
+    h5 {
         color: var(--app-text);
         margin-bottom: 20px;
     }
@@ -440,8 +450,7 @@
         grid-column: 1 / -1;
     }
 }
-@media (max-width:1200px) {
-    }
+@media (max-width:1200px) {}
 @media (max-width:1000px) {}
 @media (max-width:900px) {}
 @media (max-width:800px) {
