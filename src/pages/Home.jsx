@@ -6,6 +6,7 @@ import { MdKeyboardArrowDown } from 'react-icons/md';
 import { useTheme } from '../context/ThemeContext';
 import { EventCard } from '../components';
 import userImage from "../assets/images/user.jfif";
+import EventRow from '../components/EventRow';
 
 export default function Home() {
     const { theme, toggleTheme } = useTheme();
@@ -103,10 +104,42 @@ export default function Home() {
                  </div>
                  <div className="event-of-month">
                       <h5 className='fs-24-16 fw-bold'>Event of the Month</h5>
+                      <div className="monthly-event-box">
+
+
+                     <EventRow/>
+                     <EventRow/>
+                     <EventRow/>
+                     <EventRow/>
+
+
+                      </div>
+
 
 
                  </div>
-                 <div className="best-venues"></div>
+                 <div className="best-venues">
+                      <h5 className='fs-24-16 fw-bold'>Best Venue</h5>
+                   <div className="venues-card-wrapper">
+                          {[...Array(6)].map((_,i)=>{
+                            return(
+                                <div key={i} className="venue-box">
+                                  <img src={userImage} alt="image" className=''/>
+                                  <div className="venue-info">
+                                      <p>Pulled Reconts</p>
+                                      <p className='location'> <IoLocationOutline/> Jasparen</p>
+                                  </div>
+                                
+                                </div>
+                            )
+                          })}
+                   </div>
+           
+
+                      
+                  
+
+                 </div>
           </section>
       </div>
     </main>
