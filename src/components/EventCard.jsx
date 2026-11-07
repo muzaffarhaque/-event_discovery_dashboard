@@ -3,7 +3,7 @@ import ImageHandler from './ImageHandler'
 
 export default function EventCard() {
   return (
-    <div className='event-hero-card'>
+    <article className='event-hero-card'  >
        <ImageHandler/>
         <span className="name-tag">Manuster</span>
         <div className="event-content-box">
@@ -14,6 +14,6 @@ export default function EventCard() {
             </div>
         </div>
         
-    </div>
+    </article>
   )
 }

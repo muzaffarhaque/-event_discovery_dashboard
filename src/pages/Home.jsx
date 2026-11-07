@@ -15,10 +15,10 @@ export default function Home() {
       <nav className='vertical-nave-bar'>
          <div className="logo-box"></div>
          <ul>
-          <li><div className="icon-vl-box"> <IoHomeOutline  className='icon' /> </div></li>
-          <li><div className="icon-vl-box"> <IoWalletOutline  className='icon' /> </div></li>
-          <li><div className="icon-vl-box"> <IoLocationOutline  className='icon' /> </div></li>
-          <li><div className="icon-vl-box"> <IoMusicalNotesOutline  className='icon' /> </div></li>
+          <li><button className="icon-vl-box"> <IoHomeOutline  className='icon' /> </button></li>
+          <li><button className="icon-vl-box"> <IoWalletOutline  className='icon' /> </button></li>
+          <li><button className="icon-vl-box"> <IoLocationOutline  className='icon' /> </button></li>
+          <li><button className="icon-vl-box"> <IoMusicalNotesOutline  className='icon' /> </button></li>
          </ul>
       </nav>
       <div className='main-content-wrapper'>

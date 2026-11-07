@@ -2,24 +2,31 @@
     width: 100%;
     display: flex;
     align-items: self-start;
-    justify-content: space-between;
+    // justify-content: ;
     max-width: 1560px;
     margin: 0 auto;
     .vertical-nave-bar {
-        width: 100px;
+        width: 60px;
         padding-top: 80px;
         ul {
             list-style: none;
             padding: 0;
+            width: 100%;
             li {
                 width: 100%;
                 .icon-vl-box {
+                    width: 100%;
                     display: flex;
                     align-items: center;
                     justify-content: center;
                     padding: 14px 4px;
                     text-align: center;
+                    border: none;
+                    outline: none;
                     cursor: pointer;
+                    &:focus-visible{
+                        outline: 1.5px solid rgb(95, 180, 251);
+                    }
                     &:hover {
                         background-color: rgba(56, 56, 56,.1);
                         .icon {
@@ -37,7 +44,7 @@
 }
 
 .main-content-wrapper {
-    width: calc(100vw - 100px);
+    width: calc(95vw - 60px);
     padding: 30px clamp(15px,2vw,30px);
     .header-frame {
         width: 100%;
@@ -55,7 +62,8 @@
             border-radius: 20px;
             .serch-input {
                 width: 80%;
-                outline: none;
+                outline:none;
+                border-radius: 20px;
                 border: none;
                 font-size: 16px;
                 font-weight: 500;
@@ -64,6 +72,9 @@
                 background-color: transparent !important;
                 &::placeholder {
                     color: var(--app-text);
+                }
+                &:focus-visible{
+                    outline: 1.5px solid rgb(95, 180, 251);
                 }
 
             }
@@ -77,6 +88,11 @@
                 gap: 10px;
                 color: var(--app-text);
                 font-weight: 300;
+                padding: 6px 12px;
+                border-radius: 20px;
+                &:focus-visible{
+                    outline: 1.5px solid rgb(95, 180, 251);
+                }
 
                 .filter-icon {
                     position: relative;
@@ -342,13 +358,16 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                font-size: 15px;
+                font-size: 13.5px;
                 color: #FFF;
                 background-color: var(--app-green);
                 border: none;
                 outline: none;
                 border-radius: 20px;
-                padding: 10px clamp(20px,2vw,60px);
+                padding: 7px clamp(20px,1.3vw,40px);
+                &:focus-visible{
+                    outline: 1.5px solid rgb(36, 0, 181);
+                }
             }
 
         }
