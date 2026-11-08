@@ -1,7 +1,7 @@
 import { motion, useReducedMotion } from 'framer-motion';
 import ImageHandler from './ImageHandler'
 
-export default function EventCard() {
+export default function EventCard({url}) {
   const shouldReduceMotion = useReducedMotion();
 
   return (
@@ -15,7 +15,7 @@ export default function EventCard() {
         visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: 'easeOut' } }
       }}
       whileHover={shouldReduceMotion ? undefined : { y: -5, transition: { duration: 0.2 } }}>
-       <ImageHandler/>
+       <ImageHandler url={url}/>
         <span className="name-tag">Manuster</span>
         <div className="event-content-box">
             <h6>NOva Black</h6>

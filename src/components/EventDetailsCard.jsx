@@ -27,7 +27,7 @@ const formattedDate = new Date(data?.start || "2026-03-15T09:00:00Z").toLocaleDa
             visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: 'easeOut' } }
           }}>
             <div className="event-image">
-                <img src={eventImage} alt=""/>
+                <img src={data?.image || eventImage} alt=""/>
             </div>
             <div className="event-card-details">
                 <p className='fs-18-14 event-name'>{data?.title || "Event Name"}</p>

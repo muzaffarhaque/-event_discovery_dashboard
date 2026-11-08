@@ -10,6 +10,7 @@ import userImage from "../assets/images/user.jfif";
 import EventRow from '../components/EventRow';
 import eventsData from '../mock-events.json';
 import { useNavigate } from 'react-router-dom';
+import { eventImages, venueImages } from '../utils/reusableFunction';
 
 const cardVariants = {
     hidden: { opacity: 0, y: 18, scale: 0.98 },
@@ -117,9 +118,9 @@ export default function Home() {
 
                     <section className='hero-event-wrapper'>
                         <div className="event-card-frame">
-                            {[...Array(4)].map((_, i) => {
+                            {eventImages?.map((url, i) => {
                                 return (loading
-                                    ? <EventCard key={i}/>
+                                    ? <EventCard url={url} key={i}/>
                                     : <div key={i} className="skeleton-card shimmer"></div>)
                             })}
                         </div>
@@ -197,10 +198,10 @@ export default function Home() {
                         <div className="best-venues">
                             <h5 className='fs-24-16 fw-bold'>Best Venue</h5>
                             <div className="venues-card-wrapper">
-                                {[...Array(6)].map((_, i) => {
+                                {venueImages?.map((url, i) => {
                                     return (loading
                                         ? <div key={i} className="venue-box">
-                                                <img src={userImage} alt="image" className=''/>
+                                                <img src={url} alt="image" className=''/>
                                                 <div className="venue-info">
                                                     <p>Pulled Reconts</p>
                                                     <p className='location'>
