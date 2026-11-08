@@ -18,7 +18,7 @@ export default function Home() {
     const [saveEvent,setSaveEvent] = useState([])
 
     async function defaultLoder() {
-        await new Promise((res) => setTimeout(res, 1600));
+        await new Promise((res) => setTimeout(res, 1000));
         setLoading(true);
     }
     useEffect(() => {
