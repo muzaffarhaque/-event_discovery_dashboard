@@ -45,7 +45,7 @@ The app wraps its routes in `ThemeProvider` and mounts a shared toast notificati
 
 `src/pages/Home.jsx` is the dashboard layout. It presents featured event cards, friends' activity, event genres, monthly event rows, venue cards, and an all-events section. It navigates to `/events` from the wallet-shaped sidebar button.
 
-The dashboard uses a short timer to show skeleton placeholders before rendering its sample content. Its layout and reusable element styles are in `src/assets/css/home.scss` and `src/assets/css/style.scss`. Some dashboard cards are presentation examples rather than live data-backed features.
+The dashboard uses a short timer to show skeleton placeholders before rendering its sample content. Framer Motion scroll-reveal animations are limited to the `.event-hero-card`, `.genre-box`, and `.event-card-box` cards. Other page sections, friends' activity, monthly event rows, and venue cards are not animated. The card animations respect reduced-motion preferences. Its layout and reusable element styles are in `src/assets/css/home.scss` and `src/assets/css/style.scss`. Some dashboard cards are presentation examples rather than live data-backed features.
 
 ### Events gallery
 
@@ -112,6 +112,7 @@ The sample content, event dates, and visual controls should not be treated as li
 - **Vite** runs the local development server and creates production builds.
 - **React Router** handles navigation between `/` and `/events`.
 - **Sass** compiles the app's `.scss` stylesheets.
+- **Framer Motion** provides Home page entrance, scroll-reveal, and card animations with reduced-motion support.
 - **react-staggered-grid** lays out variable-height gallery cards.
 - **react-icons** supplies interface icons.
 - **Bootstrap / React Bootstrap** are available for existing layout and UI styling; Bootstrap CSS is imported by the app.

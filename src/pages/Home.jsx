@@ -5,17 +5,34 @@ import {LuListFilter} from 'react-icons/lu';
 import {MdKeyboardArrowDown} from 'react-icons/md';
 import {useTheme} from '../context/ThemeContext';
 import {Button, EvantDetailSkeleton, EventCard, EventDetailsCard} from '../components';
+import { motion, useReducedMotion } from 'framer-motion';
 import userImage from "../assets/images/user.jfif";
-import eventImage from "../assets/images/ev-1.jpg";
 import EventRow from '../components/EventRow';
 import eventsData from '../mock-events.json';
 import { useNavigate } from 'react-router-dom';
 
+const cardVariants = {
+    hidden: { opacity: 0, y: 18, scale: 0.98 },
+    visible: {
+        opacity: 1,
+        y: 0,
+        scale: 1,
+        transition: { duration: 0.4, ease: 'easeOut' }
+    }
+};
+
 export default function Home() {
-   const navigate = useNavigate()
+    const navigate = useNavigate();
     const {theme, toggleTheme} = useTheme();
+    const shouldReduceMotion = useReducedMotion();
     const [loading,setLoading] = useState(false);
     const [saveEvent,setSaveEvent] = useState([])
+    const cardReveal = shouldReduceMotion ? {} : {
+        initial: 'hidden',
+        whileInView: 'visible',
+        viewport: { once: true, amount: 0.15 },
+        variants: cardVariants
+    };
 
     async function defaultLoder() {
         await new Promise((res) => setTimeout(res, 1000));
@@ -25,7 +42,7 @@ export default function Home() {
         defaultLoder()
     }, [])
     return (
-        <main >
+        <main>
 
             <div className="main-section-container">
                 <nav className='vertical-nave-bar'>
@@ -102,8 +119,8 @@ export default function Home() {
                         <div className="event-card-frame">
                             {[...Array(4)].map((_, i) => {
                                 return (loading
-                                    ? <EventCard/>
-                                    : <div className="skeleton-card shimmer"></div>)
+                                    ? <EventCard key={i}/>
+                                    : <div key={i} className="skeleton-card shimmer"></div>)
                             })}
                         </div>
 
@@ -142,17 +159,17 @@ export default function Home() {
                             <h5 className='fs-24-16 fw-bold'>Event by Genre</h5>
                             {[...Array(3)].map((_, i) => {
                                 return (loading
-                                    ? <div key={i} className="genre-box">
+                                    ? <motion.div key={i} className="genre-box" {...cardReveal}>
                                             <h6 className='fs-16-13'>Minimal</h6>
                                             <p className='fs-14-12'>23s Live Event
                                                 <IoLocationOutline className='icon'/>
                                                 <span className=''>7 Nasuby</span>
                                             </p>
-                                        </div>
-                                    : <div className="genre-box skeleton">
+                                        </motion.div>
+                                    : <motion.div key={i} className="genre-box skeleton" {...cardReveal}>
                                         <h6 className='fs-16-13 mw-150 shimmer p-2'></h6>
                                         <p className='fs-14-12 mw-101 shimmer p-1'></p>
-                                    </div>)
+                                    </motion.div>)
                             })}
 
                         </div>
@@ -162,8 +179,8 @@ export default function Home() {
 
                                 {[...Array(4)].map((_, i) => {
                                     return (loading
-                                        ? <EventRow/>
-                                        : <div className="event-row">
+                                        ? <EventRow key={i}/>
+                                        : <div key={i} className="event-row">
                                             <div className="event-info w-50">
                                                 <div className="event-image-box shimmer"></div>
                                                 <div className="event-details w-100">
@@ -192,7 +209,7 @@ export default function Home() {
                                                 </div>
 
                                             </div>
-                                        : <div className="venue-box skeleton">
+                                        : <div key={i} className="venue-box skeleton">
                                             <div className="venue-info">
                                                 <p className='shimmer p-1 w-75'></p>
                                                 <p className='location shimmer p-1 w-50'></p>
@@ -213,13 +230,18 @@ export default function Home() {
                             {loading
                                 ? (eventsData.events
                                     ?.map((ele, i) => {
-                                        console.log(ele)
-                                        return (<EventDetailsCard data={ele}/>)
+                                        return (
+                                            <div key={ele.id ?? i}>
+                                                <EventDetailsCard data={ele}/>
+                                            </div>
+                                        )
                                     }))
                                 :(
                                   [...Array(8)].map((ele,i)=>{
                                     return(
-                                      <EvantDetailSkeleton/>
+                                      <div key={i}>
+                                        <EvantDetailSkeleton/>
+                                      </div>
                                     )
                                   })
                                 )}

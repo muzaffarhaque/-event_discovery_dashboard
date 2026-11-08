@@ -1,10 +1,9 @@
-import React from 'react'
+import { motion, useReducedMotion } from 'framer-motion';
 import Button from './Button';
 import userImage from "../assets/images/ev-5.jpg";
 import eventImage from "../assets/images/ev-2.jpg";
 export default function EventDetailsCard({data=""}) {
-
-
+const shouldReduceMotion = useReducedMotion();
 
 const formattedDate = new Date(data?.start || "2026-03-15T09:00:00Z").toLocaleDateString("en-GB", {
   day: "2-digit",
@@ -18,7 +17,15 @@ const formattedDate = new Date(data?.start || "2026-03-15T09:00:00Z").toLocaleDa
 
 
     return (
-        <div className="event-card-box">
+        <motion.div
+          className="event-card-box"
+          initial={shouldReduceMotion ? false : 'hidden'}
+          whileInView={shouldReduceMotion ? undefined : 'visible'}
+          viewport={{ once: true, amount: 0.15 }}
+          variants={{
+            hidden: { opacity: 0, y: 18, scale: 0.98 },
+            visible: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.4, ease: 'easeOut' } }
+          }}>
             <div className="event-image">
                 <img src={eventImage} alt=""/>
             </div>
@@ -42,6 +49,6 @@ const formattedDate = new Date(data?.start || "2026-03-15T09:00:00Z").toLocaleDa
                 </div>
 
             </div>
-        </div>
+        </motion.div>
     )
 }

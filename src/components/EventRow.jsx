@@ -1,4 +1,3 @@
-import React from 'react'
 import userImage from "../assets/images/user.jfif";
 import { IoLocationOutline, IoMusicalNotesOutline } from 'react-icons/io5';
 
