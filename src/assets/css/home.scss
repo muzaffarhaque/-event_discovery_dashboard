@@ -159,8 +159,8 @@
         }
     }
 }
-
-.event-hero-card {
+.event-hero-card,
+.skeleton-card {
     width: 30vw;
     max-width: 216px;
     min-width: 180px;
@@ -194,6 +194,7 @@
         padding: 20px;
         h6 {
             margin-bottom: 15px;
+             color: #FFF
         }
         .event-details {
             display: flex;
@@ -201,6 +202,7 @@
             font-size: 12px;
             p {
                 margin-bottom: 4px;
+                color: #FFF
             }
 
         }
@@ -273,6 +275,7 @@
         padding: 18px;
         background-color: var(--app-green);
         margin-bottom: 16px;
+
         h6 {
             margin-bottom: 6px;
             color: #FFF;
@@ -286,6 +289,14 @@
 
             }
         }
+    }
+    .genre-box.skeleton {
+        height: 95px;
+        display: grid;
+        flex-direction: column;
+        align-items: end;
+        background-color: rgba(209, 205, 205,.2);
+
     }
 }
 
@@ -319,6 +330,9 @@
                         width: 100%;
                         object-fit: contain;
                     }
+                }
+                .event-image-box.shimmer {
+                    min-width: 50px;
                 }
                 .event-details {
                     h6 {
@@ -432,6 +446,10 @@
                     margin-top: 6px;
                 }
             }
+
+        }
+        .venue-box.skeleton {
+            background-color: rgba(209, 205, 205,.3);
 
         }
     }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { FaRegUser } from 'react-icons/fa';
 import { IoHomeOutline, IoLocationOutline, IoMusicalNotesOutline, IoWalletOutline } from 'react-icons/io5';
 import { LuListFilter } from 'react-icons/lu';
@@ -10,6 +10,16 @@ import EventRow from '../components/EventRow';
 
 export default function Home() {
     const { theme, toggleTheme } = useTheme();
+    const [loading,setLoading]= useState(false);
+
+    async function defaultLoder(){
+      await new Promise((res)=>setTimeout(res, 1600));
+      setLoading(true);
+    }
+    useEffect(()=>{
+      defaultLoder()
+
+    },[])
   return (
     <main className='main-section-container'>
       <nav className='vertical-nave-bar'>
@@ -21,7 +31,11 @@ export default function Home() {
           <li><button className="icon-vl-box"> <IoMusicalNotesOutline  className='icon' /> </button></li>
          </ul>
       </nav>
+
+      
       <div className='main-content-wrapper'>
+
+        <>
           <header className='header-frame'>
             <div className="search-box-wrapper">
               <input type="search" placeholder='Search' name="search" id="" className='serch-input' autocomplete="off"/>
@@ -54,8 +68,9 @@ export default function Home() {
           <section className='hero-event-wrapper'>
             <div className="event-card-frame">
               {[...Array(4)].map((_,i)=>{
-                return(
-                  <EventCard/>
+                return(loading?
+                   <EventCard/>:
+                  <div className="skeleton-card shimmer"></div>
                 )
               })}
             </div>
@@ -66,6 +81,7 @@ export default function Home() {
               {
                 [...Array(5)].map((ele,i)=>{
                   return(
+                    loading?
                         <div key={i} className="friends-content">
                           <div className="userImage">
                             <img src={userImage} alt="Friends image " />
@@ -73,6 +89,16 @@ export default function Home() {
                           <div className="friends-information">
                             <p className='fs-14-12'>Eva star</p>
                             <p>Has  <IoWalletOutline  className='icon' />  for 2 events nearby</p>
+                          </div>
+                        </div>
+                        :
+                        <div key={i} className="friends-content">
+                          <div className="userImage shimmer">
+                          
+                          </div>
+                          <div className="friends-information mw-150">
+                            <p className='fs-14-12 mw-150 shimmer p-1'></p>
+                            <p className='mw-101 shimmer p-1 '></p>
                           </div>
                         </div>
                   )
@@ -93,10 +119,17 @@ export default function Home() {
                       <h5 className='fs-24-16 fw-bold'>Event by Genre</h5>
                       {[...Array(3)].map((_,i)=>{
                         return(
-                            <div key={i} className="genre-box">
+                          loading?
+                          <div key={i} className="genre-box">
                               <h6 className='fs-16-13'>Minimal</h6>
                               <p className='fs-14-12'>23s Live Event <IoLocationOutline  className='icon' /> <span className=''>7 Nasuby</span> </p>
                             </div>
+                          :
+                            <div  className="genre-box skeleton">
+                              <h6 className='fs-16-13 mw-150 shimmer p-2'></h6>
+                              <p className='fs-14-12 mw-101 shimmer p-1'> </p>
+                            </div>
+                            
                         )
                       })}
 
@@ -106,12 +139,23 @@ export default function Home() {
                       <h5 className='fs-24-16 fw-bold'>Event of the Month</h5>
                       <div className="monthly-event-box">
 
+                        {[...Array(4)].map((_,i)=>{
+                          return(
+                            loading?
+                            <EventRow/>:
+                              <div className="event-row">
+                                <div className="event-info w-50">
+                                  <div className="event-image-box shimmer"></div>
+                                  <div className="event-details w-100">
+                                    <h6 className='fs-16-13 shimmer p-2 mw-520'></h6>
+                                    <p className='fs-14-12 shimmer p-1 mw-150'> </p>
+                                  </div>
+                                </div>
+                              </div>
 
-                     <EventRow/>
-                     <EventRow/>
-                     <EventRow/>
-                     <EventRow/>
-
+                    
+                          )
+                        })}
 
                       </div>
 
@@ -123,7 +167,8 @@ export default function Home() {
                    <div className="venues-card-wrapper">
                           {[...Array(6)].map((_,i)=>{
                             return(
-                                <div key={i} className="venue-box">
+                                   loading?
+                              <div key={i} className="venue-box">
                                   <img src={userImage} alt="image" className=''/>
                                   <div className="venue-info">
                                       <p>Pulled Reconts</p>
@@ -131,6 +176,16 @@ export default function Home() {
                                   </div>
                                 
                                 </div>
+                                   :
+
+                               <div  className="venue-box skeleton">
+                                  <div className="venue-info">
+                                      <p className='shimmer p-1 w-75'></p>
+                                      <p className='location shimmer p-1 w-50'></p>
+                                  </div>
+                                
+                              </div>
+                                
                             )
                           })}
                    </div>
@@ -141,6 +196,7 @@ export default function Home() {
 
                  </div>
           </section>
+        </>
       </div>
     </main>
   )
