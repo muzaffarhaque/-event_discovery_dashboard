@@ -108,7 +108,7 @@ export default function Events() {
           <input
             type="search"
             value={search}
-            className='input-box'
+            className='input-box border-0'
             onChange={(event) => setSearch(event.target.value)}
             placeholder="Search events, places, and more"
             aria-label="Search events"
