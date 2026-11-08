@@ -1,5 +1,5 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { Home } from './pages';
+import { Events, Home } from './pages';
 import { ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -10,6 +10,10 @@ const router = createBrowserRouter([
     {
         path: "/",
         element: <Home />
+    },
+    {
+        path: "/events",
+        element: <Events />
     },
 ]);
 

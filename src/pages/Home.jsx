@@ -9,11 +9,13 @@ import userImage from "../assets/images/user.jfif";
 import eventImage from "../assets/images/ev-1.jpg";
 import EventRow from '../components/EventRow';
 import eventsData from '../mock-events.json';
+import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
+   const navigate = useNavigate()
     const {theme, toggleTheme} = useTheme();
-    const [loading,
-        setLoading] = useState(false);
+    const [loading,setLoading] = useState(false);
+    const [saveEvent,setSaveEvent] = useState([])
 
     async function defaultLoder() {
         await new Promise((res) => setTimeout(res, 1600));
@@ -21,7 +23,6 @@ export default function Home() {
     }
     useEffect(() => {
         defaultLoder()
-
     }, [])
     return (
         <main >
@@ -36,7 +37,7 @@ export default function Home() {
                             </button>
                         </li>
                         <li>
-                            <button className="icon-vl-box">
+                            <button onClick={()=>navigate('/events')} className="icon-vl-box">
                                 <IoWalletOutline className='icon'/>
                             </button>
                         </li>
