@@ -2,7 +2,7 @@
 
 A React event-discovery interface built with Vite. The app has a dashboard at `/` and a searchable, category-filtered staggered event gallery at `/events`.
 
-**Live demo:** [https://idyllic-lollipop-aaab76.netlify.app/](https://idyllic-lollipop-aaab76.netlify.app/)
+**Live demo:** [https://idyllic-lollipop-aaab76.netlify.app/](https://event-dashboard1.netlify.app/)
 
 ## Requirements
 
