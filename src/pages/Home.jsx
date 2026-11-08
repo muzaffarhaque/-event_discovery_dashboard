@@ -4,10 +4,11 @@ import {IoHomeOutline, IoLocationOutline, IoMusicalNotesOutline, IoWalletOutline
 import {LuListFilter} from 'react-icons/lu';
 import {MdKeyboardArrowDown} from 'react-icons/md';
 import {useTheme} from '../context/ThemeContext';
-import {Button, EventCard} from '../components';
+import {Button, EvantDetailSkeleton, EventCard, EventDetailsCard} from '../components';
 import userImage from "../assets/images/user.jfif";
 import eventImage from "../assets/images/ev-1.jpg";
 import EventRow from '../components/EventRow';
+import eventsData from '../mock-events.json';
 
 export default function Home() {
     const {theme, toggleTheme} = useTheme();
@@ -206,32 +207,22 @@ export default function Home() {
                     <section className='event-card-wrapper'>
                         <h5 className='fs-24-16 fw-bold'>All Event</h5>
 
-                        <div className="event-card-frame">
+                        <div className="event-cardd-frame">
 
-                            <div className="event-card-box">
-                                <div className="event-image">
-                                    <img src={eventImage} alt=""/>
-                                </div>
-                                <div className="event-card-details">
-                                    <p className='fs-18-14 event-name'>Name of TheEvent</p>
-                                    <p className='fs-14-12 date-time'>Oct 20 &nbsp; 30:30</p>
-                                    <div className="price-booked">
-                                        <div className="booked-users">
-                                            <ul className="book-user-img-box">
-                                                <li><img src={userImage} alt="image"/></li>
-                                                <li><img src={userImage} alt="image"/></li>
-                                                <li><img src={userImage} alt="image"/></li>
+                            {loading
+                                ? (eventsData.events
+                                    ?.map((ele, i) => {
+                                        console.log(ele)
+                                        return (<EventDetailsCard data={ele}/>)
+                                    }))
+                                :(
+                                  [...Array(8)].map((ele,i)=>{
+                                    return(
+                                      <EvantDetailSkeleton/>
+                                    )
+                                  })
+                                )}
 
-                                            </ul>
-                                            <h4 className='fs-18-14'>$25</h4>
-                                            <button className='booked-btn'>Booked</button>
-
-                                        </div>
-                                        <Button/>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
 
                     </section>
@@ -239,7 +230,7 @@ export default function Home() {
                 </div>
             </div>
 
-            <Button/>
+            {/* <Button/> */}
 
         </main>
     )
