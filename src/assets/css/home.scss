@@ -194,7 +194,7 @@
         padding: 20px;
         h6 {
             margin-bottom: 15px;
-             color: #FFF
+            color: #FFF;
         }
         .event-details {
             display: flex;
@@ -202,7 +202,7 @@
             font-size: 12px;
             p {
                 margin-bottom: 4px;
-                color: #FFF
+                color: #FFF;
             }
 
         }
@@ -308,7 +308,7 @@
     .monthly-event-box {
         width: 100%;
         background-color: var(--app-gray);
-        border-radius: 30px;
+        border-radius: 20px;
         padding: 20px clamp(10px,1.3vw,30px);
         .event-row {
             width: 100%;
@@ -317,6 +317,9 @@
             justify-content: space-between;
             margin-bottom: 16px;
             gap: 10px;
+            &:last-child{
+                margin-bottom: 0;
+            }
             .event-info {
                 display: flex;
                 align-items: center;
@@ -450,6 +453,99 @@
         }
         .venue-box.skeleton {
             background-color: rgba(209, 205, 205,.3);
+
+        }
+    }
+}
+
+.event-card-wrapper {
+    h5 {
+        color: var(--app-text);
+        margin-bottom: 20px;
+    }
+    .event-card-frame {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        .event-card-box {
+            width: 34vw;
+            max-width: 280px;
+            border-radius: 24px;
+            padding: clamp(10px,1.3vw,21px);
+            background-color: var(--app-gray);
+            .event-image {
+                width: 100%;
+                height: 140px;
+                border-radius: 20px;
+                overflow: hidden;
+                img {
+                    width: 100%;
+                    object-fit: cover;
+                }
+            }
+            .event-card-details {
+                padding-top: 10px;
+                p {
+                    color: var(--app-text);
+                    font-weight: 500;
+                    &:first-child {
+                        margin-bottom: 4px;
+                        font-weight: 600;
+
+                    }
+                }
+                .price-booked {
+
+                    .booked-users {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        margin: 13px 0;
+                        .book-user-img-box {
+                            display: flex;
+                            align-items: center;
+                            list-style: none;
+                            padding-left: 10px;
+                            margin: 0;
+                            li {
+                                width: 30px;
+                                min-width: 30px;
+                                height: 30px;
+                                margin-left: -10px;
+                                border-radius: 50%;
+                                overflow: hidden;
+                                border: 1px solid green;
+                                img {
+                                    width: 100%;
+                                    object-fit: cover;
+                                }
+                            }
+
+                        }
+                        h4 {
+                            color: var(--app-text);
+                            margin: 0;
+                            font-weight: 600;
+                        }
+                        .booked-btn {
+                            border: none;
+                            outline: none;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: var(--app-green);
+                            color: #FFF;
+                            font-size: 11px;
+                            padding: 6px 14px;
+                            border-radius: 25px;
+                            font-weight: 500;
+                            margin: 0;
+                        }
+                    }
+
+                }
+            }
 
         }
     }
