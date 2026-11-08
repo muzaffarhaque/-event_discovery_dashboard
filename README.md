@@ -45,7 +45,7 @@ The app wraps its routes in `ThemeProvider` and mounts a shared toast notificati
 
 `src/pages/Home.jsx` is the dashboard layout. It presents featured event cards, friends' activity, event genres, monthly event rows, venue cards, and an all-events section. It navigates to `/events` from the wallet-shaped sidebar button.
 
-The dashboard uses a short timer to show skeleton placeholders before rendering its sample content. Framer Motion scroll-reveal animations are limited to the `.event-hero-card`, `.genre-box`, and `.event-card-box` cards. Other page sections, friends' activity, monthly event rows, and venue cards are not animated. The card animations respect reduced-motion preferences. Its layout and reusable element styles are in `src/assets/css/home.scss` and `src/assets/css/style.scss`. Some dashboard cards are presentation examples rather than live data-backed features.
+The dashboard uses a short timer to show skeleton placeholders before rendering its sample content. Framer Motion scroll-reveal animations are limited to the `.event-hero-card`, `.genre-box`, and `.event-card-box` cards. Other page sections, friends' activity, monthly event rows, and venue cards are not animated. The card animations respect reduced-motion preferences. Users can save or unsave dashboard event cards, and open the shared Saved Events drawer from the header. Its layout and reusable element styles are in `src/assets/css/home.scss` and `src/assets/css/style.scss`. Some dashboard cards are presentation examples rather than live data-backed features.
 
 ### Events gallery
 
@@ -57,6 +57,7 @@ The dashboard uses a short timer to show skeleton placeholders before rendering 
 4. Shows an empty state when no records match.
 5. Loads event photos from Unsplash and uses a bundled image if a photo fails to load.
 6. Provides a Home button that navigates back to `/`.
+7. Lets users save or unsave gallery events and open the shared Saved Events drawer.
 
 Gallery styles live in `src/assets/css/events.scss`, imported through `src/App.scss`. The styles use the shared theme CSS variables and include mobile and reduced-motion behavior.
 
@@ -65,6 +66,10 @@ The gallery data is currently defined directly in `Events.jsx`; it is not fetche
 ### Theme
 
 `src/context/ThemeContext.jsx` provides the current light/dark theme and a toggle function. It sets `data-theme` on the document root; shared CSS variables in `src/assets/css/style.scss` and theme-specific selectors use that attribute to choose colors.
+
+### Saved events
+
+`src/context/SavedEventsContext.jsx` owns saved event state shared across both routes. It persists saved records in browser `localStorage` under `spinach-saved-events`, using distinct `dashboard-` and `gallery-` IDs so items from the two sample data sets cannot collide. The save controls add or remove a card, and the shared `SavedEventsDrawer` lets users review or remove saved events. The drawer closes with Escape, its close button, or the backdrop, traps keyboard focus while open, and locks background scrolling.
 
 ### Sample data and reusable code
 
@@ -86,7 +91,11 @@ src/
     css/                    Global, dashboard, contact, and gallery styles
     images/                 Local image assets and fallbacks
   components/               Reusable cards, rows, buttons, and skeletons
-  context/ThemeContext.jsx  Light/dark theme state
+    SavedEventsDrawer.jsx   Shared saved-items drawer
+    SavedEventsButton.jsx   Shared saved-items drawer launcher
+  context/
+    ThemeContext.jsx        Light/dark theme state
+    SavedEventsContext.jsx  Shared persistent saved-event state
   hooks/FeatchData.js       Axios data-fetching hook
   pages/
     Home.jsx                Dashboard route
@@ -97,14 +106,14 @@ src/
 
 ## Project decisions and current scope
 
-- **Client-side demo:** Event data is local sample content; there is no event API, database, authentication, or booking backend configured.
+- **Client-side demo:** Event data is local sample content; there is no event API, database, authentication, or booking backend configured. Saved events persist locally in the current browser.
 - **Separate data sets:** The Home dashboard uses `mock-events.json`; the Events gallery uses its own gallery-specific records in `Events.jsx`. These are not synchronized.
 - **Staggered layout:** `react-staggered-grid` is used for the gallery's varied-height cards rather than a fixed row grid.
 - **Remote images with a local fallback:** Gallery photos use Unsplash URLs to keep the repository's asset bundle smaller. The page falls back to a checked-in image if a URL fails. Remote photos therefore require an internet connection.
 - **Styling:** Sass is used for component/page styling, with CSS custom properties supporting the shared light/dark theme. Bootstrap CSS is loaded for existing utility classes and base styles.
 - **Navigation:** React Router handles the two application routes; navigation within the pages uses its navigation hook.
 
-The sample content, event dates, and visual controls should not be treated as live event listings or completed transactions. Integrating a real backend, booking flow, or persistent user preferences would require additional implementation.
+The sample content, event dates, and visual controls should not be treated as live event listings or completed transactions. Saved events are browser-local and do not sync across devices. Integrating a real backend, booking flow, or account-based synchronization would require additional implementation.
 
 ## Main dependencies
 

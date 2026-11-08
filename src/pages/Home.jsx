@@ -5,6 +5,7 @@ import {LuListFilter} from 'react-icons/lu';
 import {MdKeyboardArrowDown} from 'react-icons/md';
 import {useTheme} from '../context/ThemeContext';
 import {Button, EvantDetailSkeleton, EventCard, EventDetailsCard} from '../components';
+import SavedEventsButton from '../components/SavedEventsButton';
 import { motion, useReducedMotion } from 'framer-motion';
 import userImage from "../assets/images/user.jfif";
 import EventRow from '../components/EventRow';
@@ -94,20 +95,18 @@ export default function Home() {
                             className="theme-toggle"
                             type="button"
                             onClick={toggleTheme}
-                            aria-label={`Switch to ${theme === 'light'
-                            ? 'dark'
-                            : 'light'} mode`}>
-                            <span className="theme-toggle-icon" aria-hidden="true">
-                                {theme === 'light'
-                                    ? '🌙'
-                                    : '☀️'}
+                            role="switch"
+                            aria-checked={theme === 'dark'}
+                            aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}>
+                            <span className="theme-toggle-track" aria-hidden="true">
+                                <span className="theme-toggle-thumb" />
                             </span>
-                            <span className="theme-toggle-text">
-                                {theme === 'light'
-                                    ? 'Dark mode'
-                                    : 'Light mode'}
+                            <span className="theme-toggle-label" aria-hidden="true">
+                                {theme === 'light' ? 'Light' : 'Dark'}
                             </span>
                         </button>
+
+                        <SavedEventsButton />
 
                         <div className="profile-icon">
                             <MdKeyboardArrowDown className="down-arrow"/>

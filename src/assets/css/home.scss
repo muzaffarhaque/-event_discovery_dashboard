@@ -27,6 +27,7 @@
                     background-color: transparent;
                     &:focus-visible {
                         outline: 1.5px solid rgb(95, 180, 251);
+                        outline-offset: 2px;
                     }
                     &:hover {
                         background-color: rgba(56, 56, 56,.1);
@@ -93,6 +94,7 @@
                 border-radius: 20px;
                 &:focus-visible {
                     outline: 1.5px solid rgb(95, 180, 251);
+                    outline-offset: 2px;
                 }
 
                 .filter-icon {
@@ -386,7 +388,8 @@
                 box-shadow: 0 0 34px -8px rgba(139, 31, 216, .55) !important;
                 // animation: indRingSpin 3.6s linear infinite !important;
                 &:focus-visible {
-                    outline: 1.5px solid rgb(36, 0, 181);
+                    outline: 2px solid rgb(36, 0, 181);
+                    outline-offset: 2px;
                 }
 
                 // @keyframes indRingSpin {
@@ -543,6 +546,10 @@
                         border-radius: 25px;
                         font-weight: 500;
                         margin: 0;
+                        &:focus-visible {
+                            outline: 1.5px solid rgb(95, 180, 251);
+                            outline-offset: 2px;
+                        }
                     }
                 }
 
@@ -571,7 +578,7 @@
 @media (max-width:1200px) {}
 @media (max-width:1000px) {}
 @media (max-width:900px) {
-      .event-cardd-frame {
+    .event-cardd-frame {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
@@ -610,14 +617,12 @@
     }
 
 }
-
-
 @media (max-width:678px) {
-      .event-cardd-frame {
+    .event-cardd-frame {
         align-items: center;
-         place-items: center;
+        place-items: center;
         grid-template-columns: repeat(1, minmax(0, 1fr));
-        .event-card-box{
+        .event-card-box {
             max-width: 350px;
         }
     }

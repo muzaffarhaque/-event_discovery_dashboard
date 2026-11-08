@@ -14,6 +14,16 @@ const formattedDate = new Date(data?.start || "2026-03-15T09:00:00Z").toLocaleDa
   hour12: false,
   timeZone: "UTC"
 }).replace(",", " at");
+const savedEvent = {
+  id: `dashboard-${data?.id}`,
+  title: data?.title || "Event Name",
+  category: data?.type,
+  date: formattedDate,
+  location: data?.location,
+  image: data?.image || eventImage,
+  price: data?.price,
+  source: 'dashboard',
+};
 
 
     return (
@@ -45,7 +55,7 @@ const formattedDate = new Date(data?.start || "2026-03-15T09:00:00Z").toLocaleDa
                         <button className='booked-btn'>Booked</button>
 
                     </div>
-                    <Button/>
+                    <Button event={savedEvent}/>
                 </div>
 
             </div>

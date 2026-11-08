@@ -44,11 +44,23 @@
   text-align: center;
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: space-between;
+  gap: 20px;
+
+  .events-intro-actions {
+    display: flex;
+    flex: 0 0 auto;
+    align-items: center;
+    gap: 10px;
+  }
+
   .home-btn{
+    min-height: 40px;
     border: 0;
     border-radius: 20px;
     padding: 10px 20px;
+    background: var(--app-surface);
+    color: var(--app-text);
     cursor: pointer;
     font-size: 14px;
     &:hover{
@@ -164,7 +176,7 @@
   }
 
   &:focus-visible {
-    outline: 2px solid #e78362;
+    outline: 1.5px solid rgb(95, 180, 251);
     outline-offset: 2px;
   }
 
@@ -300,7 +312,17 @@
   }
 
   .events-intro {
+    align-items: stretch;
+    flex-direction: column;
     padding-bottom: 44px;
+  }
+
+  .events-intro .events-intro-actions {
+    justify-content: space-between;
+  }
+
+  .events-intro .events-search {
+    margin: 0;
   }
 
   .events-intro h1 {

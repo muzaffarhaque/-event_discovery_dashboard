@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
 import { StaggeredGrid, StaggeredGridItem } from 'react-staggered-grid';
-import { FiCalendar, FiMapPin, FiSearch } from 'react-icons/fi';
+import { FiBookmark, FiCalendar, FiMapPin, FiSearch } from 'react-icons/fi';
 import fallbackImage from '../assets/images/tengku-nadia-fz8_SONkBB8-unsplash.jpg';
 import { useNavigate } from 'react-router-dom';
+import SavedEventsButton from '../components/SavedEventsButton';
+import { useSavedEvents } from '../context/SavedEventsContext';
 
 const events = [
   {
@@ -85,7 +87,8 @@ const categories = ['All events', 'Music', 'Art & Design', 'Food & Drink', 'Tech
 export default function Events() {
   const [activeCategory, setActiveCategory] = useState('All events');
   const [search, setSearch] = useState('');
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const { isEventSaved, toggleSavedEvent } = useSavedEvents();
 
   const filteredEvents = useMemo(() => {
     const query = search.trim().toLowerCase();
@@ -101,8 +104,10 @@ export default function Events() {
 
 
       <section className="events-intro" aria-labelledby="events-title">
-   
-        <button className='home-btn' onClick={()=>navigate('/')}>Home</button>
+        <div className="events-intro-actions">
+          <button className="home-btn" type="button" onClick={() => navigate('/')}>Home</button>
+          <SavedEventsButton />
+        </div>
         <label className="events-search d-flex align-items-center gap-3 my-3">
           <FiSearch aria-hidden="true" />
           <input
@@ -162,6 +167,24 @@ export default function Events() {
                   />
                   <div className="event-tile-shade" />
                   <span className="event-tile-category">{event.category}</span>
+                  <button
+                    className={`event-tile-save${isEventSaved(`gallery-${event.id}`) ? ' is-saved' : ''}`}
+                    type="button"
+                    aria-pressed={isEventSaved(`gallery-${event.id}`)}
+                    aria-label={`${isEventSaved(`gallery-${event.id}`) ? 'Remove' : 'Save'} ${event.title} ${isEventSaved(`gallery-${event.id}`) ? 'from' : 'to'} saved events`}
+                    onClick={() => toggleSavedEvent({
+                      id: `gallery-${event.id}`,
+                      title: event.title,
+                      category: event.category,
+                      date: event.date,
+                      location: event.location,
+                      image: event.image,
+                      source: 'gallery',
+                    })}
+                  >
+                    <FiBookmark aria-hidden="true" />
+                    <span>{isEventSaved(`gallery-${event.id}`) ? 'Saved' : 'Save'}</span>
+                  </button>
                   <div className="event-tile-info">
                     <h2>{event.title}</h2>
                     <p><FiCalendar aria-hidden="true" />{event.date}</p>

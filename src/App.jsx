@@ -5,6 +5,8 @@ import "react-toastify/dist/ReactToastify.css";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { SavedEventsProvider } from './context/SavedEventsContext';
+import SavedEventsDrawer from './components/SavedEventsDrawer';
 
 const router = createBrowserRouter([
     {
@@ -23,6 +25,7 @@ function AppContent() {
     return (
         <>
             <RouterProvider router={router} />
+            <SavedEventsDrawer />
             <ToastContainer />
         </>
     );
@@ -31,7 +34,9 @@ function AppContent() {
 function App() {
     return (
         <ThemeProvider>
-            <AppContent />
+            <SavedEventsProvider>
+                <AppContent />
+            </SavedEventsProvider>
         </ThemeProvider>
     );
 }
