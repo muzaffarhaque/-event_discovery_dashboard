@@ -154,7 +154,7 @@ export default function Events() {
                 itemHeight={event.height}
                 style={{ transition: 'left 0.35s ease, top 0.35s ease' }}
               >
-                <article className={`event-tile${event.featured ? ' is-featured' : ''}`} style={{ height: event.height }}>
+                <article className={`event-tile${event.featured ? ' is-featured' : ''}`} style={{ height: activeCategory!=="All events"?"300px":event.height }}>
                   <img
                     className="event-tile-image"
                     src={event.image}

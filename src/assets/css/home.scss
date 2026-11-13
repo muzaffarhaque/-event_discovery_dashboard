@@ -80,6 +80,10 @@
                 }
 
             }
+            .filter-dropdown-frame{
+                position: relative;
+                z-index: 100;
+               
             .filter-btn {
                 border: none;
                 outline: none;
@@ -112,6 +116,27 @@
                     }
                 }
             }
+            .option-list{
+                position: absolute;
+                display: none;
+                padding-left: 0;
+                margin-bottom: 0;
+                top: 100%;
+                left: 0;
+                list-style: none;
+                border-radius: 10px;
+                 background-color: var(--app-background);
+                padding: 6px;
+                li{
+                    padding: 3px 12px;
+                    color: var(--app-text);
+                    cursor: pointer;
+                    &:hover{
+                        background-color: rgba(228, 255, 213, 0.1);
+                    }
+                }
+            }
+            }
         }
         .profile-icon {
             display: flex;
@@ -121,7 +146,9 @@
 
     }
 }
-
+.filter-dropdown-frame:hover .option-list{
+    display: block !important;
+}
 .hero-event-wrapper {
     width: 100%;
     display: flex;

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { FiBookmark, FiCalendar, FiMapPin, FiTrash2, FiX } from 'react-icons/fi';
 import { useSavedEvents } from '../context/SavedEventsContext';
@@ -11,10 +11,20 @@ export default function SavedEventsDrawer() {
     closeSavedEvents,
     removeSavedEvent,
   } = useSavedEvents();
+  const [open,setOpen]= useState(false);
+  const [eventId,setEventId]= useState(null)
   const shouldReduceMotion = useReducedMotion();
   const closeButtonRef = useRef(null);
   const drawerRef = useRef(null);
   const previouslyFocusedRef = useRef(null);
+
+
+
+  function deleateEventhandler(id){
+    setEventId(id);
+    setOpen(true);
+    
+  }
 
   useEffect(() => {
     if (!isDrawerOpen) return undefined;
@@ -60,7 +70,12 @@ export default function SavedEventsDrawer() {
     ? { duration: 0 }
     : { duration: 0.28, ease: [0.22, 1, 0.36, 1] };
 
+
+
+
+
   return (
+    <>
     <AnimatePresence>
       {isDrawerOpen && (
         <>
@@ -123,7 +138,7 @@ export default function SavedEventsDrawer() {
                       className="saved-event-remove"
                       type="button"
                       aria-label={`Remove ${event.title} from saved events`}
-                      onClick={() => removeSavedEvent(event.id)}
+                      onClick={()=>deleateEventhandler(event.id)}
                     >
                       <FiTrash2 aria-hidden="true" />
                     </button>
@@ -141,5 +156,20 @@ export default function SavedEventsDrawer() {
         </>
       )}
     </AnimatePresence>
+
+
+    {open && <div className='delete-modal-container'>
+      <div className="delete-modal-box">
+        <h6>Delete Event</h6>
+        <p className='fs-16-13'>Are you sure want to delete this  Event ?</p>
+        <div className="button-frame">
+          <button onClick={()=>setOpen(false)} className='deletebtn fs-14-12 cancel save-event-btn'>NO</button>
+          <button onClick={()=>{removeSavedEvent(eventId);setOpen(false)}} className='deletebtn fs-14-12 delete_btn save-event-btn'>Yes</button>
+        </div>
+      </div>
+  </div>}
+
+   </>
+
   );
 }

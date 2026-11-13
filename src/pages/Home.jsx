@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useEffect, useMemo, useState} from 'react'
 import {FaRegUser} from 'react-icons/fa';
 import {IoHomeOutline, IoLocationOutline, IoMusicalNotesOutline, IoWalletOutline} from 'react-icons/io5';
 import {LuListFilter} from 'react-icons/lu';
@@ -29,6 +29,23 @@ export default function Home() {
     const shouldReduceMotion = useReducedMotion();
     const [loading,setLoading] = useState(false);
     const [saveEvent,setSaveEvent] = useState([])
+
+    const [data,setData]= useState(eventsData.events);
+    const [mode,setMode]=useState("all")
+
+
+    const filterData = useMemo(()=>{
+        const filterInfo= data?.filter((ele,i)=>ele.virtual === mode);
+        return filterInfo;
+    },[mode])
+
+
+    // useEffect(()=>{
+
+    // },[mode])
+
+
+
     const cardReveal = shouldReduceMotion ? {} : {
         initial: 'hidden',
         whileInView: 'visible',
@@ -84,11 +101,18 @@ export default function Home() {
                                 id=""
                                 className='serch-input'
                                 autocomplete="off"/>
+                            <div className="filter-dropdown-frame">    
                             <button className="filter-btn">Filter
                                 <span className='filter-icon'>
                                     <LuListFilter className='icon'/>
                                 </span>
+    
                             </button>
+                            <ul className='option-list'>
+                                <li onClick={()=>setMode(true)}>ONLINE</li>
+                                <li onClick={()=>setMode(false)}>OFFLINE</li>
+                            </ul>
+                            </div>
                         </div>
 
                         <button
@@ -228,7 +252,7 @@ export default function Home() {
                         <div className="event-cardd-frame">
 
                             {loading
-                                ? (eventsData.events
+                                ? ((filterData.length==0?data:filterData)
                                     ?.map((ele, i) => {
                                         return (
                                             <div key={ele.id ?? i}>

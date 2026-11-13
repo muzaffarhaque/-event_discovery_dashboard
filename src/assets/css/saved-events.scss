@@ -297,6 +297,61 @@
   }
 }
 
+.delete-modal-container{
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  z-index: 1092;
+  width: 100vw;
+  background-color: rgba(30, 30, 30,.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .delete-modal-box{
+    width: 100%;
+    max-width: 450px;
+    border-radius: 20px;
+    padding: 20px;
+    background-color:var(--app-background);
+    h6{
+      font-size: 20px;
+      font-weight: 600px;
+      margin-bottom: 20px;
+      color: rgb(255, 99, 99);
+    }
+    p{
+      font-weight: 500;
+      color: var(--app-text);
+    }
+  }
+.button-frame{
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  padding-top: 8px;
+  gap: 10px;
+  button{
+    // border: 1px solid grey;
+    outline: none;
+    border-radius: 10px;
+    // background-color: transparent;
+    padding:9px 10px;
+    width:80px;
+    // color: var(--app-text) !important;
+    color: #FFF;
+    &:hover{
+      background-color: rgba(212, 206, 206,.2);
+    }
+  }
+}
+
+  
+}
+
+
+
+
 @media (max-width: 760px) {
   .saved-events-trigger {
     padding: 8px 10px;
